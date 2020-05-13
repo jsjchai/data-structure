@@ -18,7 +18,7 @@ type SqList struct {
 	length int        //当前长度
 }
 
-func new() *SqList {
+func newInstance() *SqList {
 	return &SqList{data: make([]ElemType, MAXSIZE)}
 }
 
@@ -58,10 +58,16 @@ func (list *SqList) insert(i int, e ElemType) string {
 	return OK
 }
 
+/**
+是否已满
+*/
 func (list *SqList) isFull() bool {
 	return list.length == MAXSIZE
 }
 
+/**
+添加数据
+*/
 func (list *SqList) append(e ElemType) bool {
 	if list.isFull() {
 		fmt.Println("list is full")
@@ -71,18 +77,44 @@ func (list *SqList) append(e ElemType) bool {
 	list.length++
 	return true
 }
+func (list *SqList) delete(i int, e *ElemType) string {
+	var k int
+	if list.length == 0 {
+		return ERROR
+	}
+
+	if i < 1 || i > list.length {
+		return ERROR
+	}
+	*e = list.data[i-1]
+	if i < list.length {
+		for k = i; k < list.length; k++ {
+			list.data[k-1] = list.data[k]
+		}
+	}
+	list.length--
+	return OK
+
+}
 
 /**打印*/
-func (list *SqList) prinf() {
+func (list *SqList) printf() {
 	for i := 0; i < len(list.data); i++ {
 		fmt.Println(i, list.data[i])
 	}
 }
 
 func main() {
-	list := new()
-	list.prinf()
+	list := newInstance()
+	list.printf()
+	list.append(1)
 	list.append(2)
+	list.append(3)
+	list.append(4)
+	list.append(5)
 	fmt.Println("insert:", list.insert(1, 7))
-	list.prinf()
+	list.printf()
+	var del ElemType
+	fmt.Println("delete:", list.delete(2, &del))
+	fmt.Println("delete e =", del)
 }
