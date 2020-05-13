@@ -25,11 +25,11 @@ func newInstance() *SqList {
 /**
 获取元素
 */
-func (list *SqList) getElm(i int, e ElemType) string {
+func (list *SqList) getElm(i int, e *ElemType) string {
 	if i < 0 || i > list.length {
 		return ERROR
 	}
-	e = list.data[i]
+	*e = list.data[i]
 	return OK
 }
 
@@ -117,4 +117,8 @@ func main() {
 	var del ElemType
 	fmt.Println("delete:", list.delete(2, &del))
 	fmt.Println("delete e =", del)
+
+	var e ElemType
+	fmt.Println(list.getElm(5, &e))
+	fmt.Println(e)
 }
