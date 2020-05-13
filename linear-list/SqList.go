@@ -80,12 +80,9 @@ func (list *SqList) prinf() {
 }
 
 func main() {
-
 	list := new()
-
 	list.prinf()
 	list.append(2)
 	fmt.Println("insert:", list.insert(1, 7))
 	list.prinf()
-
 }
