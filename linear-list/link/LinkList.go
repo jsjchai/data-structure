@@ -3,9 +3,8 @@ package main
 import "fmt"
 
 const (
-	MAXSIZE int    = 10 //最大存储容量
-	OK      string = "ok"
-	ERROR   string = "error"
+	OK    string = "ok"
+	ERROR string = "error"
 )
 
 //元素类型
@@ -17,12 +16,13 @@ type Node struct {
 }
 
 type LinkList struct {
-	node *Node
+	head   *Node
+	length int
 }
 
 func (list *LinkList) get(i int, e *ElemType) string {
 	var j int
-	p := list.node.next
+	p := list.head.next
 	for j = 1; j < i; j++ {
 		p = p.next
 	}
@@ -35,7 +35,7 @@ func (list *LinkList) get(i int, e *ElemType) string {
 
 func (list *LinkList) insert(i int, e ElemType) string {
 
-	p := list.node
+	p := list.head
 	var j int
 	for j = 1; j < i; j++ {
 		p = p.next
@@ -43,17 +43,27 @@ func (list *LinkList) insert(i int, e ElemType) string {
 	if j > i {
 		return ERROR
 	}
-	var s = &Node{data: e, next: p.next}
-	p.next = s
+	s := Node{data: e, next: p.next}
+	p.next = &s
+	list.length++
 	return OK
 }
 
 func (list *LinkList) println() {
-	fmt.Println(list.node.data)
+	if list.head == nil || list.length == 0 {
+		return
+	}
+
+	var temp = list.head
+	for i := 0; i < list.length; i++ {
+		fmt.Println(temp.data)
+		temp = temp.next
+	}
 }
 
 func main() {
-	var list LinkList
+
+	list := LinkList{head: &Node{data: 4, next: nil}, length: 1}
 	list.insert(1, 6)
 	list.println()
 }
