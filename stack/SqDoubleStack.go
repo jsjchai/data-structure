@@ -4,6 +4,7 @@ import "fmt"
 
 const MAX_SIZE = 10
 
+/**两栈共享空间*/
 type SqDoubleStack struct {
 	data []int
 	top1 int //栈1栈顶指针
@@ -51,7 +52,7 @@ func (stack *SqDoubleStack) pop(e *int, stackNumber int) string {
 }
 
 func main() {
-	stack := SqDoubleStack{data: make([]int, MAX_SIZE), top1: -1, top2: MAX_SIZE - 1}
+	stack := SqDoubleStack{data: make([]int, MAX_SIZE), top1: -1, top2: MAX_SIZE}
 	stack.push(10, 1)
 	stack.push(20, 2)
 
