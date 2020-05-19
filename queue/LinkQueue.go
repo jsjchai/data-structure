@@ -28,7 +28,7 @@ func (q *LinkQueue) enQueue(e int) {
 }
 
 func (q *LinkQueue) deQueue() *int {
-	if q.front == nil {
+	if q.front == q.rear {
 		return nil
 	}
 	p := q.front.next
@@ -49,5 +49,4 @@ func main() {
 	for q.front != q.rear {
 		fmt.Println(*q.deQueue())
 	}
-
 }
