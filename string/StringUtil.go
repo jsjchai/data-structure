@@ -22,9 +22,34 @@ func index(s string, t string, pos int) int {
 		}
 	}
 	return 0
+}
 
+/*返回子串T在主串s中第pos个字符之后的位置 若不存在，则函数返回值为0*/
+/*T非空，1<=pos<=len(s)*/
+func index1(s string, t string, pos int) int {
+	i := pos
+	j := 1
+	rs := []rune(s)
+	rt := []rune(t)
+	for i <= len(s) && j <= len(t) {
+		fmt.Println(i, " ", rs[i-1], " ", j, " ", rt[j-1])
+		if rs[i-1] == rt[j-1] {
+			i++
+			j++
+		} else {
+			i = i - j + 2 /*i退回到上次匹配首位的下一位*/
+			j = 1
+		}
+	}
+	if j > len(t) {
+		return i - len(t)
+	}
+
+	return 0
 }
 
 func main() {
-	fmt.Println(index("abcadacd", "cd", 1))
+	//fmt.Println(index("abcadacd", "cd", 1))
+	//fmt.Println(index1("goodgoogle", "google", 1))
+	fmt.Println(index1("00000000000000000000000000000000000001", "00000001", 1))
 }
