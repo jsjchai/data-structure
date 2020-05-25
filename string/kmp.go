@@ -23,8 +23,9 @@ func getNext(t string, next []int) {
 func indexKMP(s string, t string, pos int) int {
 	i := pos
 	j := 0
-	next := make([]int, 255)
+	next := make([]int, 20)
 	getNext(t, next)
+	fmt.Println(next)
 	for i < len(s) && j < len(t) {
 		if j == -1 || s[i] == t[j] {
 			i++
@@ -42,4 +43,5 @@ func indexKMP(s string, t string, pos int) int {
 
 func main() {
 	fmt.Println(indexKMP("abcdefgab", "bcdef", 0))
+	fmt.Println(indexKMP("aaaabcde", "aaaaax", 0))
 }
