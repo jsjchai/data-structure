@@ -1,7 +1,8 @@
 package main
 
-//双亲表示法
-
+/**
+*双亲表示法
+ */
 type PTNode struct {
 	data   int
 	parent int
