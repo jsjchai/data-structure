@@ -55,4 +55,14 @@ func inOrderTraverseThr(t *BiThrTree) {
 
 func main() {
 
+	pre = new(BiThrTree)
+	tree := new(BiThrTree)
+	tree.data = 0
+	tree.lchild = new(BiThrTree)
+	tree.lchild.data = 1
+	tree.rchild = new(BiThrTree)
+	tree.rchild.data = 2
+	inThreading(tree)
+	inOrderTraverseThr(tree)
+
 }
